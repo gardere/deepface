@@ -731,7 +731,7 @@ def represent(
             img = np.expand_dims(img, axis=0)
             # when called from verify, this is already normalized. But needed when user given.
             if img.max() > 1:
-                img = img.astype(np.float32) / 255.0
+                np.divide(img, 255.0, out=img, casting='unsafe')
         # --------------------------------
         # make dummy region and confidence to keep compatibility with `extract_faces`
         img_region = {"x": 0, "y": 0, "w": img.shape[1], "h": img.shape[2]}
